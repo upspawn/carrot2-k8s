@@ -28,5 +28,6 @@ jobs:
     - name: Build and push
       uses: docker/bake-action@v4
       with:
-        bake-file: docker-bake.json
-        set: "*.args.REPO_NAME=${{ env.REPO_NAME }}"
+        push: true
+        set: |
+          *.args.REPO_NAME=${{ env.REPO_NAME }}
