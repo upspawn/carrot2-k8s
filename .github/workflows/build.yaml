@@ -34,6 +34,3 @@ jobs:
       uses: docker/bake-action@v4
       with:
         push: true
-        set: |
-          *.args.REPO_NAME=ghcr.io/${{ github.repository }}
-          *.args.CARROT2_VERSION=4.5.1
