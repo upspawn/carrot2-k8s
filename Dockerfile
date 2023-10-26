@@ -5,6 +5,14 @@ FROM alpine:3.14 AS build
 ARG CARROT2_VERSION=4.5.1
 ENV CARROT2_VERSION=${CARROT2_VERSION}
 
+# Metadata as described in best practices
+LABEL org.opencontainers.image.title="Carrot2 Text Clustering Server" \
+      org.opencontainers.image.description="A Docker image to run Carrot2 Text Clustering Server on Kubernetes" \
+      org.opencontainers.image.url="https://github.com/your-username/carrot2-k8s" \
+      org.opencontainers.image.source="https://github.com/your-username/carrot2-k8s" \
+      org.opencontainers.image.version="${CARROT2_VERSION}" \
+      org.opencontainers.image.licenses="Apache-2.0"
+
 # Install curl and unzip
 RUN apk --no-cache add curl unzip
 
