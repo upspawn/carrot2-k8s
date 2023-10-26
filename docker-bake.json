@@ -4,7 +4,8 @@
       "context": ".",
       "dockerfile": "Dockerfile",
       "args": {
-        "CARROT2_VERSION": "4.5.1"
+        "CARROT2_VERSION": "4.5.1",
+        "REPO_NAME": ""
       },
       "platforms": ["linux/amd64", "linux/arm64"],
       "tags": ["${REPO_NAME}:latest", "${REPO_NAME}:${CARROT2_VERSION}"]
