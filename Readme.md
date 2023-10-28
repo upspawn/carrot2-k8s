@@ -23,4 +23,4 @@ This repository contains resources for running Carrot2 on Kubernetes, including 
 
 ## License
 
-Apache 2.0
+MIT
