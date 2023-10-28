@@ -1,0 +1,39 @@
+# publish-helm-chart.yml
+name: Publish Helm Chart
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  CHART_PATH: charts/carrot2
+  PACKAGE_REGISTRY: ghcr.io/upspawn
+  REPO_NAME: carrot2-k8s
+
+permissions:
+  id-token: write 
+  contents: read  
+  packages: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2.4.0
+
+    - name: Setup Helm
+      uses: helm/chart-testing-action@v2.1.0
+
+    - name: Package Helm chart
+      run: |
+        helm package ${CHART_PATH} --destination .deploy
+        ls -l .deploy
+
+    - name: Publish Helm chart
+      run: |
+        helm repo add ${{ env.PACKAGE_REGISTRY }} https://${{ env.PACKAGE_REGISTRY }}/helm/${{ env.REPO_NAME }}
+        helm repo update
+        helm push .deploy/*.tgz ${{ env.PACKAGE_REGISTRY }}
